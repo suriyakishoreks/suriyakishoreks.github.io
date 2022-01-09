@@ -9,8 +9,9 @@ module.exports = {
       main: "./src/index.js"
    },
    output: {
-      filename: "[name].js",
-      path: path.resolve(__dirname, 'devBuild')
+      path: path.resolve(__dirname, 'devBuild'),
+      filename: "js/[name].js",
+      assetModuleFilename: 'assets/[name].[ext][query]',
    },
    devServer: {
       static: {
@@ -46,6 +47,10 @@ module.exports = {
                   loader: 'sass-loader'
                }
             ]
+         },
+         {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
          }
       ]
    },
@@ -54,7 +59,7 @@ module.exports = {
          template: "./public/index.html"
       }),
       new CssExtractPlugin({
-         filename: '[name].css'
+         filename: 'css/[name].css'
       }),
    ],
 };

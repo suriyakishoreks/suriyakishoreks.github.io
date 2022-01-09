@@ -11,8 +11,9 @@ module.exports = {
       main: "./src/index.js"
    },
    output: {
-      filename: "[name].[contenthash:8].js",
-      path: path.resolve(__dirname, 'build')
+      path: path.resolve(__dirname, 'build'),
+      filename: "js/[name].[contenthash:8].js",
+      assetModuleFilename: 'assets/[name].[contenthash:8][ext][query]',
    },
    module: {
       rules: [
@@ -39,6 +40,10 @@ module.exports = {
                   loader: 'sass-loader'
                }
             ]
+         },
+         {
+            test: /\.(png|svg|jpg|jpeg|gif)$/i,
+            type: 'asset/resource',
          }
       ]
    },
@@ -51,7 +56,7 @@ module.exports = {
             {
                from: "public",
                filter: async (filePath) => {
-                  if (filePath.includes("index.html")) {
+                  if (filePath.endsWith("index.html")) {
                      return false;
                   }
                   return true;
@@ -60,7 +65,8 @@ module.exports = {
          ]
       }),
       new CssExtractPlugin({
-         filename: '[name].[contenthash:8].css'
+         filename: 'css/[name].[contenthash:8].css'
+
       }),
       new CleanWebpackPlugin(),
    ],
