@@ -44,7 +44,11 @@ const commonConfig = {
          {
             test: /\.(png|svg|jpg|jpeg|gif)$/i,
             type: 'asset/resource',
-         }
+         },
+         {
+            test: /\.(woff|woff2|eot|ttf|otf)$/i,
+            type: 'asset/resource',
+         },
       ]
    },
    plugins: [
@@ -59,6 +63,7 @@ const commonConfig = {
 
 const developmentConfig = {
    mode: "development",
+   // devtool: 'source-map',
    devServer: {
       static: {
          directory: path.join(__dirname, 'public'),
