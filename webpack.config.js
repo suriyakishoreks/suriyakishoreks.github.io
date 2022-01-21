@@ -1,12 +1,12 @@
 const webpack = require('webpack');
+const { merge } = require('webpack-merge');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-module.exports = {
-   mode: "production",
+const commonConfig = {
    entry: {
       main: "./src/index.js"
    },
@@ -51,6 +51,28 @@ module.exports = {
       new HtmlWebpackPlugin({
          template: "./public/index.html"
       }),
+      new CssExtractPlugin({
+         filename: 'css/[name].[contenthash:8].css'
+      }),
+   ],
+};
+
+const developmentConfig = {
+   mode: "development",
+   devServer: {
+      static: {
+         directory: path.join(__dirname, 'public'),
+      },
+      compress: true,
+      port: 3001,
+      open: true,
+      hot: true,
+   },
+};
+
+const productionConfig = {
+   mode: "production",
+   plugins: [
       new CopyWebpackPlugin({
          patterns: [
             {
@@ -64,10 +86,17 @@ module.exports = {
             }
          ]
       }),
-      new CssExtractPlugin({
-         filename: 'css/[name].[contenthash:8].css'
-
-      }),
       new CleanWebpackPlugin(),
    ],
 };
+
+module.exports = (env, args) => {
+   switch (args.mode) {
+      case 'development':
+         return merge(commonConfig, developmentConfig);
+      case 'production':
+         return merge(commonConfig, productionConfig);
+      default:
+         throw new Error('No matching configuration was found!');
+   }
+}
