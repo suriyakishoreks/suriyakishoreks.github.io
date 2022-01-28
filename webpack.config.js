@@ -11,6 +11,7 @@ const commonConfig = {
       main: "./src/index.js"
    },
    output: {
+      publicPath: '/',
       path: path.resolve(__dirname, 'build'),
       filename: "js/[name].[contenthash:8].js",
       assetModuleFilename: 'assets/[name].[contenthash:8][ext][query]',
@@ -49,6 +50,10 @@ const commonConfig = {
             test: /\.(woff|woff2|eot|ttf|otf)$/i,
             type: 'asset/resource',
          },
+         {
+            test: /\.(json|txt|glsl)$/i,
+            type: 'asset/source',
+         }
       ]
    },
    plugins: [
