@@ -51,7 +51,7 @@ const commonConfig = {
             type: 'asset/resource',
          },
          {
-            test: /\.(json|txt|glsl)$/i,
+            test: /\.(txt|glsl)$/i,
             type: 'asset/source',
          }
       ]
