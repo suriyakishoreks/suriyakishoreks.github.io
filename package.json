@@ -1,32 +1,29 @@
 {
-   "name": "portfolio-app",
-   "version": "1.0.0",
-   "description": "Portfolio",
-   "main": "index.js",
-   "scripts": {
-      "start": "webpack serve --mode development --config ./webpack.config.js",
-      "build": "webpack --mode production --config ./webpack.config.js"
-   },
-   "author": "Suriyakishore K S",
-   "license": "ISC",
-   "devDependencies": {
-      "@babel/core": "^7.16.7",
-      "@babel/preset-env": "^7.16.7",
-      "babel-loader": "^8.2.3",
-      "clean-webpack-plugin": "^4.0.0",
-      "copy-webpack-plugin": "^10.2.0",
-      "css-loader": "^6.5.1",
-      "html-webpack-plugin": "^5.5.0",
-      "mini-css-extract-plugin": "^2.4.6",
-      "sass": "^1.47.0",
-      "sass-loader": "^12.4.0",
-      "style-loader": "^3.3.1",
-      "webpack": "^5.65.0",
-      "webpack-cli": "^4.9.1",
-      "webpack-dev-server": "^4.7.2",
-      "webpack-merge": "^5.8.0"
-   },
-   "dependencies": {
-      "three": "^0.136.0"
-   }
+  "name": "app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
 }
